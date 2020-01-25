@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/22 19:11:11 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/25 05:48:31 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "../libft/includes/libft.h"
 # include <stdbool.h>
 # include "op.h"
+
+# define HAVE_NAME
+# define HAVE_COMMENT
 
 typedef struct	s_asm
 {

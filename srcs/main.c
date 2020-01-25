@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/22 19:19:12 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/25 03:41:45 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int     main(int ac, char **av)
     if (handle_file(&asmb, ac, av[1]))
         return (ft_error("Wrong input", -1));
     ft_printf("{green}File to create : %s{reset}\n", asmb.file_name);
-    // if (parse_champ(asmb))
+    // if (parse(asmb))
     //     return (ft_error("Wrong champ", -1));
     return (0);
 }
