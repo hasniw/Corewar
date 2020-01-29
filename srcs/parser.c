@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 03:40:50 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 18:27:34 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/29 18:53:54 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_bool  parse(t_asnm *asmb)
 			return (free_asm(asmb, 1));
 		ft_strdel(&asmb->line);
     }
-    if (all_done(asmb))
+    if (check_parsing(asmb))
         return (free_asm(asmb, 1));
     return (0);
 }
