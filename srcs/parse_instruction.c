@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 17:35:56 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 01:09:30 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ static void		remove_comment(char *str)
 
 	i = ft_strchrindex(str, COMMENT_CHAR);
 	if (i >= 0)
-	{
 		while (str[i])
 			str[i++] = 0;
-	}
 }
 
 static t_inst	*create_inst(t_asm *asmb, t_op *op)
@@ -92,11 +90,14 @@ t_bool			parse_instruction(t_asm *asmb)
 	if (!str[i])
 	    return (free_str_value(str, 1));
 	i = skip_space(str, i);
-	op = check_inst(str + i);
-	inst = create_inst(asmb, op);
+	if (!(op = check_inst(str + i)))
+	    return (free_str_value(str, 1));
+	if (!(inst = create_inst(asmb, op)))
+	    return (free_str_value(str, 1));
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
-	check_param(str + i, op, inst);
+	if (check_param(str + i, op, inst))
+	    return (free_str_value(str, 1));
 	asmb->accu_len += inst->len;
 	ft_list_push_back_inst(&asmb->inst, inst);
 	return (free_str_value(str, 1));

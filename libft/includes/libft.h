@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:20:26 by wahasni           #+#    #+#             */
-/*   Updated: 2020/01/20 19:27:11 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/30 22:26:50 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ int						ft_strcmp(const char *s1, const char *s2);
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
 int						ft_strequ(char const *s1, char const *s2);
 int						ft_strnequ(char const *s1, char const *s2, size_t n);
+int						ft_strspn(const char *s, const char *charset);
+int						ft_strcspn(const char *s, const char *charset);
+int						ft_strchrindex(const char *str, char c);
 int						ft_nbrlen(uintmax_t nb, intmax_t base);
 size_t					ft_strlen(const char *s);
 size_t					w_charlen(wint_t wc);

@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:32:56 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 18:10:52 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 01:10:21 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	get_inst_len(t_op *op, t_inst *inst, char type)
 		inst->len += 2;
 }
 
-void		check_param(char *str, t_op *op, t_inst *inst)
+t_bool		check_param(char *str, t_op *op, t_inst *inst)
 {
 	char	**arr;
 	char	*tmp;

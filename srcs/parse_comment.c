@@ -6,13 +6,13 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/28 02:19:47 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/30 19:46:11 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-t_bool      handle_comment(t_asm *asmb, char **line)
+static t_bool	handle_comment(t_asm *asmb, char **line)
 {
 	char	*tmp;
 	int		ret;
@@ -37,7 +37,7 @@ t_bool      handle_comment(t_asm *asmb, char **line)
     return (0);
 }
 
-t_bool      check_comment(t_asm *asmb)
+t_bool			parse_comment(t_asm *asmb)
 {
     int     n_start;
     int     n_len;

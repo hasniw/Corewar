@@ -6,7 +6,7 @@
 #    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 19:43:10 by wahasni           #+#    #+#              #
-#    Updated: 2020/01/08 18:46:44 by hasni            ###   ########.fr        #
+#    Updated: 2020/01/30 22:30:21 by hasni            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,6 +113,9 @@ SRC_NAME 	=	ft_atoi_base.c										\
 				ft_strnstr.c										\
 				ft_strrchr.c										\
 				ft_strsplit.c										\
+				ft_strchrindex.c									\
+				ft_strspn.c											\
+				ft_strcspn.c										\
 				ft_strstr.c											\
 				ft_strsub.c											\
 				ft_wordcount.c										\

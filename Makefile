@@ -6,7 +6,7 @@
 #    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 01:37:54 by wahasni           #+#    #+#              #
-#    Updated: 2020/01/22 19:11:17 by hasni            ###   ########.fr        #
+#    Updated: 2020/01/30 13:59:51 by hasni            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,22 @@ LIB			= ./libft/
 LDFLAGS		= -Llibft
 LDLIBS		= -lft
 
-SRC_NAME 	=	main.c\
+SRC_NAME 	=	check_param.c\
+				check_parsing.c\
+				check_type.c\
 				ft_error.c\
+				ft_free.c\
 				ft_init.c\
+				ft_list.c\
+				ft_skip.c\
+				get_op.c\
+				get_param.c\
+				main.c\
+				op.c\
+				parse_comment.c\
+				parse_instruction.c\
+				parse_name.c\
+				parser.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

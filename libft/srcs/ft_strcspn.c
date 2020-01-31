@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:27:41 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/30 22:53:16 by hasni            ###   ########.fr       */
+/*   Created: 2020/01/30 22:23:02 by hasni             #+#    #+#             */
+/*   Updated: 2020/01/30 22:25:38 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "libft.h"
 
-void    init_asm(t_asm *asmb)
+int		ft_strcspn(const char *s, const char *charset)
 {
-    asmb->fd = 0;
-    asmb->line = NULL;
-    asmb->file_name = NULL;
-    asmb->check = 0;
-    ft_bzero(asmb->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(asmb->comment, COMMENT_LENGTH + 1);
-    asmb->accu_len = 0;
-	asmb->inst = NULL;
-	asmb->labels = NULL;
+	int	i;
+
+	i = 0;
+	while (s[i] && !ft_charinset(s[i], charset))
+		i++;
+	return (i);
 }

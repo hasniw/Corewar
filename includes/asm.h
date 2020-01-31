@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/25 05:48:31 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/30 22:21:14 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,86 @@
 # define HAVE_NAME
 # define HAVE_COMMENT
 
-typedef struct	s_asm
+typedef struct		s_op
 {
-    int			fd;
-    char		*file_name;
-	char		prog_name[PROG_NAME_LENGTH + 1];
-	char		comment[COMMENT_LENGTH + 1];
-}				t_asm;
+	char			*instruction;
+	char			param_num;
+	char			param_type[3];
+	char			opcode;
+	int				cycle;
+	char			*name;
+	char			ocp;
+	char			carry;
+	char			direct_len;
+}					t_op;
+
+typedef struct		s_inst
+{
+	char			opcode;
+	char			ocp;
+	char			direct_len;
+	int				param_byte;
+	char			param_num;
+	char			**param_arr;
+	int				addr;
+	int				len;
+}					t_inst;
+
+typedef struct		s_label
+{
+	char			*name;
+	int				addr;
+	struct s_label	*next;
+}					t_label;
+
+typedef struct		s_asm
+{
+    int				fd;
+	char			*line;
+    char			*file_name;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	char			prog_comment[COMMENT_LENGTH + 1];
+	char			check;
+	int				accu_len;
+	t_inst			*inst;
+	t_label			*labels;
+}					t_asm;
+
+/*
+** ERROR
+*/
+
+int					ft_error(char *str, int ret);
+
+/*
+** INIT
+*/
+
+void				init_asm(t_asm *asmb);
+
+/*
+** PARSING
+*/
+
+t_bool				parse(t_asnm *asmb);
+t_bool				parse_name(t_asm *asmb);
+t_bool				parse_comment(t_asm *asmb);
+t_bool				parse_instruction(t_asm *asmb);
+t_bool				check_parsing(t_asm *asmb);
+void				check_param(char *str, t_op *op, t_inst *inst);
 
 
-int				ft_error(char *str, int ret);
 
-void			init_asm(t_asm *asmb);
+/*
+** UTILS
+*/
+
+int					skip_space(char *str, int i);
+int					skip_nonspace(char *str, int i);
+
+/*
+** FREE
+*/
+
 
 #endif
