@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/30 22:21:14 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 20:01:16 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define ASM_H
 
 # include "../libft/includes/libft.h"
-# include <stdbool.h>
 # include "op.h"
 
-# define HAVE_NAME
-# define HAVE_COMMENT
+# define HAVE_NAME 1
+# define HAVE_COMMENT 2
+# define t_bool int // => Voir comment opti 
 
 typedef struct		s_op
 {
@@ -81,14 +81,12 @@ void				init_asm(t_asm *asmb);
 ** PARSING
 */
 
-t_bool				parse(t_asnm *asmb);
+t_bool				parse(t_asm *asmb);
 t_bool				parse_name(t_asm *asmb);
 t_bool				parse_comment(t_asm *asmb);
 t_bool				parse_instruction(t_asm *asmb);
 t_bool				check_parsing(t_asm *asmb);
-void				check_param(char *str, t_op *op, t_inst *inst);
-
-
+t_bool				check_param(char *str, t_op *op, t_inst *inst);
 
 /*
 ** UTILS

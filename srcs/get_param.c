@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:45:07 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 18:22:14 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:53:30 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static void	get_param_byte(t_inst *inst, int i, int value)
+static void	get_param_byte(t_inst *inst, int value, int i)
 {
 	if (i == 0)
 		inst->param_byte = value * 64;
@@ -26,19 +26,19 @@ char		get_param_type(char *str, t_inst *inst, int i)
 {
 	if (str[0] == 'r')
 	{
-		get_param_byte(inst, i, 1);
+		get_param_byte(inst, 1, i);
 		return (T_REG);
 	}
 	if (str[0] == '%')
 	{
-		get_param_byte(inst, i, 2);
+		get_param_byte(inst, 2, i);
 		if (ft_isdigit(str[1]) || str[1] == '-')
 			return (T_DIR);
 		else if (str[1] == ':')
 			return (T_DIR | T_LAB);
 		return (0);
 	}
-	get_param_byte(inst, i, 3);
+	get_param_byte(inst, 3, i);
 	if (ft_isdigit(str[0]) || str[0] == '-')
 		return (T_IND);
 	else if (str[0] == ':')

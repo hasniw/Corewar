@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:28:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 18:37:35 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:59:22 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	check_label(t_inst *inst_list, t_label *labels_list)
 
 t_bool  check_parsing(t_asm *asmb)
 {
-    if (asmb->check & name)
+    if (asmb->check & HAVE_NAME)
 		return (ft_error("champion has no name", 1));
-	if (asmb->check & comment)
+	if (asmb->check & HAVE_COMMENT)
 		return (ft_error("champion has no comment", 1));
 	if (!asmb->inst)
 		return (ft_error("champion has no instruction", 1));

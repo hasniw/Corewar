@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_param.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:32:56 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 01:10:21 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:52:35 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static void	check_param_num(char *str, char **arr, int param_num)
+static t_bool	check_param_num(char *str, char **arr, int param_num)
 {
 	int		i;
 	int		sep_num;
@@ -27,12 +27,13 @@ static void	check_param_num(char *str, char **arr, int param_num)
 	while (arr[arr_num])
 		arr_num++;
 	if (arr_num != sep_num + 1)
-		ft_error_line("too much separators");
+		return (ft_error("too much separators", 1));
 	if (param_num != arr_num)
-		ft_error_line("parameter number is wrong");
+		return (ft_error("parameter number is wrong", 1));
+	return (0);
 }
 
-static void	get_inst_len(t_op *op, t_inst *inst, char type)
+static void		get_inst_len(t_op *op, t_inst *inst, char type)
 {
 	if (type & T_REG)
 		inst->len++;
@@ -42,7 +43,7 @@ static void	get_inst_len(t_op *op, t_inst *inst, char type)
 		inst->len += 2;
 }
 
-t_bool		check_param(char *str, t_op *op, t_inst *inst)
+t_bool			check_param(char *str, t_op *op, t_inst *inst)
 {
 	char	**arr;
 	char	*tmp;
@@ -50,22 +51,25 @@ t_bool		check_param(char *str, t_op *op, t_inst *inst)
 	int		i;
 
 	if (!(arr = ft_strsplit(str, SEPARATOR_CHAR)))
-		ft_error_line("ft_strsplit failed in check_parameters");
-	check_param_num(str, arr, op->param_num);
+		return (ft_error("ft_strsplit failed in check_parameters", 1));
+	if (check_param_num(str, arr, op->param_num))
+		return (1);
 	i = -1;
 	while (++i < op->param_num)
 	{
 		if (!(tmp = ft_strtrim(arr[i])))
-			ft_error_line("ft_strtrim failed in check_parameters");
+			return (ft_error("ft_strtrim failed in check_parameters", 1));
 		ft_strdel(&arr[i]);
 		arr[i] = tmp;
 		if (!(type = get_param_type(arr[i], inst, i)))
-			ft_error_line("ft_strtrim failed in check_parameters");
+			return (ft_error("ft_strtrim failed in check_parameters", 1));
 		if (!(type & op->param_type[i]))
-			ft_error_line("input arguments have wrong type");
-		check_type(arr[i], type);
+			return (ft_error("input arguments have wrong type", 1));
+		if (check_type(arr[i], type))
+			return (1);
 		get_inst_len(op, inst, type);
 		inst->param_num = op->param_num;
 		inst->param_arr = arr;
 	}
+	return (0);
 }

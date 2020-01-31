@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:36:09 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 02:40:17 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:51:59 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static void	check_registry(char *str)
+static t_bool	check_registry(char *str)
 {
 	int		num;
 
@@ -28,7 +28,7 @@ static void	check_registry(char *str)
 		return (ft_error("registry argument has wrong format", 1));
 }
 
-static void	check_number(char *str, char type)
+static t_bool	check_number(char *str, char type)
 {
 	if (type & T_DIR)
 		str++;
@@ -42,7 +42,7 @@ static void	check_number(char *str, char type)
 	}
 }
 
-static void	check_label(char *str, char type)
+static t_bool	check_label(char *str, char type)
 {
 	if (type & T_DIR)
 		str++;
@@ -57,12 +57,16 @@ static void	check_label(char *str, char type)
 	}
 }
 
-void		check_type(char *str, int type)
+t_bool			check_type(char *str, int type)
 {
 	if (type & T_REG)
-		check_registry(str);
+		if (check_registry(str))
+			return (1);
 	else if (type & T_LAB)
-		check_label(str, type);
+		if (check_label(str, type))
+			return (1);
 	else if (type & (T_DIR | T_IND))
-		check_number(str, type);
+		if (check_number(str, type))
+			return (1);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_comment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/30 19:46:11 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:59:42 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_bool			parse_comment(t_asm *asmb)
     if (line[n_start] != '"')
         return (ft_error("could not find starting '\"' at the beginning of the comment", 1));
     line += n_start + 1;
-    if (handle_comment(t_asm *asmb, &line))
+    if (handle_comment(asmb, &line))
         return (1);
     n_len = ft_strchrindex(line, '"');
     if (!line[n_len] || line[n_len + 1 + ft_strspn(line + n_len + 1, " ")])

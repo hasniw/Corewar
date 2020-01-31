@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 01:09:30 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:58:19 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_bool	check_label_infront(t_asm *asmb, char *str)
 			while (j < i)
 				if (!ft_strchr(LABEL_CHARS, str[j++]))
 					return (ft_error("label contains non-LABEL_CHARS", 1));
-			ft_list_push_back_label(&asmb->label, ft_strsub(str, 0, i), asmb->accu_len);
+			ft_list_push_back_label(&asmb->labels, ft_strsub(str, 0, i), asmb->accu_len);
 			return (i + 1);
 		}
 		i++;

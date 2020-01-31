@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 18:54:34 by hasni            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:32:36 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int     main(int ac, char **av)
     init_asm(&asmb);
     if (handle_file(&asmb, ac, av[1]))
         return (ft_error("Wrong input", -1));
-    if (parse(asmb))
+    if (parse(&asmb))
         return (ft_error("Wrong champ", -1));
     // ft_printf("{green}File to create : %s{reset}\n", asmb.file_name);
     return (0);
