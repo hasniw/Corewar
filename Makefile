@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 01:37:54 by wahasni           #+#    #+#              #
-#    Updated: 2020/01/30 13:59:51 by hasni            ###   ########.fr        #
+#    Updated: 2020/02/01 02:25:16 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRC_NAME 	=	check_param.c\
 				get_op.c\
 				get_param.c\
 				main.c\
-				op.c\
 				parse_comment.c\
 				parse_instruction.c\
 				parse_name.c\

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 19:58:19 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/01/31 20:45:24 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_op		*check_inst(char *str)
 	return (op);
 }
 
-static t_bool	check_label_infront(t_asm *asmb, char *str)
+static int		check_label_infront(t_asm *asmb, char *str)
 {
 	int		i;
 	int		j;
@@ -91,13 +91,13 @@ t_bool			parse_instruction(t_asm *asmb)
 	    return (free_str_value(str, 1));
 	i = skip_space(str, i);
 	if (!(op = check_inst(str + i)))
-	    return (free_str_value(str, 1));
+	    return (free_str_value(str, 0));
 	if (!(inst = create_inst(asmb, op)))
-	    return (free_str_value(str, 1));
+	    return (free_str_value(str, 0));
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
 	if (check_param(str + i, op, inst))
-	    return (free_str_value(str, 1));
+	    return (free_str_value(str, 0));
 	asmb->accu_len += inst->len;
 	ft_list_push_back_inst(&asmb->inst, inst);
 	return (free_str_value(str, 1));

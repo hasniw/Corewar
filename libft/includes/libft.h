@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 16:20:26 by wahasni           #+#    #+#             */
-/*   Updated: 2020/01/30 22:26:50 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/01 02:20:26 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int						ft_isprint(int c);
 int						ft_islower(int c);
 int						ft_isupper(int c);
 int						ft_isblank(int c);
+int						ft_charinset(char c, const char *charset); // Peut etre modifier
 int						ft_toupper(int c);
 int						ft_tolower(int c);
 int						ft_iswhitespace(int c);

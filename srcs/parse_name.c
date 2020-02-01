@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/30 19:45:43 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/01 02:17:05 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 // Free a chaque return error
 
-static t_bool	handle_name(t_asmb, char **line)
+static t_bool	handle_name(t_asm *asmb, char **line)
 {
 	char	*tmp;
-	char	*line_bis;
 	int		ret;
 	int		len;
 

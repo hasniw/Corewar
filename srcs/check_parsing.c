@@ -6,13 +6,13 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:28:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 19:59:22 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/01/31 23:38:46 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static void	check_each_label(t_inst *inst, t_label *labels_list, int i)
+static t_bool	check_each_label(t_inst *inst, t_label *labels_list, int i)
 {
 	int			j;
 	int			found;
@@ -31,10 +31,11 @@ static void	check_each_label(t_inst *inst, t_label *labels_list, int i)
 		labels_list = labels_list->next;
 	}
 	if (found == 0)
-		ft_error("can't find referenced label of the parameters");
+		return (ft_error("can't find referenced label of the parameters", 1));
+	return (0);
 }
 
-static void	check_label(t_inst *inst_list, t_label *labels_list)
+static t_bool	check_label(t_inst *inst_list, t_label *labels_list)
 {
 	t_inst		*inst;
 	int			i;
@@ -46,14 +47,16 @@ static void	check_label(t_inst *inst_list, t_label *labels_list)
 		while (i < inst->param_num)
 		{
 			if (ft_strchr(inst->param_arr[i], ':'))
-				check_each_label(inst, labels_list, i);
+				if (check_each_label(inst, labels_list, i))
+					return (1);
 			i++;
 		}
 		inst_list = inst_list->next;
 	}
+	return (0);
 }
 
-t_bool  check_parsing(t_asm *asmb)
+t_bool  		check_parsing(t_asm *asmb)
 {
     if (asmb->check & HAVE_NAME)
 		return (ft_error("champion has no name", 1));
@@ -61,6 +64,7 @@ t_bool  check_parsing(t_asm *asmb)
 		return (ft_error("champion has no comment", 1));
 	if (!asmb->inst)
 		return (ft_error("champion has no instruction", 1));
-	check_label(asmb->inst, asmb->labels);
+	if (check_label(asmb->inst, asmb->labels))
+		return (1);
 	return (0);
 }

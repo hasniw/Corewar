@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 20:01:16 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/01 02:16:16 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_inst
 	char			**param_arr;
 	int				addr;
 	int				len;
+	struct s_inst	*next;
 }					t_inst;
 
 typedef struct		s_label
@@ -87,6 +88,9 @@ t_bool				parse_comment(t_asm *asmb);
 t_bool				parse_instruction(t_asm *asmb);
 t_bool				check_parsing(t_asm *asmb);
 t_bool				check_param(char *str, t_op *op, t_inst *inst);
+char				get_param_type(char *str, t_inst *inst, int i);
+t_bool				check_type(char *str, int type);
+t_op				*get_op(char *instruction);
 
 /*
 ** UTILS
@@ -99,5 +103,18 @@ int					skip_nonspace(char *str, int i);
 ** FREE
 */
 
+int					free_str_value(char *str, int value);
+int					free_asm(t_asm *asmb, int ret);
+void				free_labels(t_label *labels);
+void				free_inst(t_inst *inst);
+void				free_tab(void **tab);
+
+
+/*
+** LIST
+*/
+
+void				ft_list_push_back_inst(t_inst **begin_list, t_inst *inst);
+void				ft_list_push_back_label(t_label **begin_list, char *name, int addr);
 
 #endif

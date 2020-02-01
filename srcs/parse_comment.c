@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 20:19:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/01 02:03:55 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_bool	handle_comment(t_asm *asmb, char **line)
 	{
 		ft_strlcat(asmb->prog_comment, tmp, COMMENT_LENGTH);
 		ft_strdel(&asmb->line);
-		ret = sget_next_line(asmb->fd, &asmb->line);
+		ret = get_next_line(asmb->fd, &asmb->line);
 		tmp = asmb->line;
 		len += ft_strchrindex(tmp, '"') + 1;
 		if (len > COMMENT_LENGTH)

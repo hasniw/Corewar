@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/13 19:43:10 by wahasni           #+#    #+#              #
-#    Updated: 2020/01/30 22:30:21 by hasni            ###   ########.fr        #
+#    Updated: 2020/02/01 02:30:56 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_NAME 	=	ft_atoi_base.c										\
 				ft_atoll.c											\
 				ft_bzero.c											\
 				ft_cntdigit.c										\
+				ft_charinset.c										\
 				ft_count_word.c                                     \
 				ft_convert_base.c									\
 				ft_isalnum.c										\
@@ -54,6 +55,7 @@ SRC_NAME 	=	ft_atoi_base.c										\
 				ft_isblank.c										\
 				ft_isbase.c											\
 				ft_iswhitespace.c									\
+				ft_isspace.c										\
 				ft_sqrt.c											\
 				ft_recursive_factorial.c							\
 				ft_itoa.c											\
