@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 03:40:50 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:17:49 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/01 03:29:26 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,20 @@ t_bool  parse(t_asm *asmb)
         if (asmb->line[0] == COMMENT_CHAR || asmb->line[0] == ';')
             ;
         else if (ft_strnequ(asmb->line + ft_strspn(asmb->line, " \t"),
-					NAME_CMD_STRING, 5) && parse_name(asmb))
-			return (free_asm(asmb, 1));
+					NAME_CMD_STRING, 5))
+        {
+            if (parse_name(asmb))
+			    return (free_asm(asmb, 1));
+        }
         else if (ft_strnequ(asmb->line + ft_strspn(asmb->line, " \t"),
-					COMMENT_CMD_STRING, 7) && parse_comment(asmb))
-			return (free_asm(asmb, 1));
+					COMMENT_CMD_STRING, 7))
+		{
+            if (parse_comment(asmb))
+        	    return (free_asm(asmb, 1));
+        }
         else if (!parse_instruction(asmb))
-			return (free_asm(asmb, 1));
-		ft_strdel(&asmb->line);
+        	return (free_asm(asmb, 1));
+        ft_strdel(&asmb->line);
     }
     if (check_parsing(asmb))
         return (free_asm(asmb, 1));

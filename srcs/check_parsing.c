@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:28:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 23:38:46 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/01 03:40:03 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static t_bool	check_label(t_inst *inst_list, t_label *labels_list)
 
 t_bool  		check_parsing(t_asm *asmb)
 {
-    if (asmb->check & HAVE_NAME)
+    if (!(asmb->check & HAVE_NAME))
 		return (ft_error("champion has no name", 1));
-	if (asmb->check & HAVE_COMMENT)
+	if (!(asmb->check & HAVE_COMMENT))
 		return (ft_error("champion has no comment", 1));
 	if (!asmb->inst)
 		return (ft_error("champion has no instruction", 1));

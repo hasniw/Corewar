@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/05 19:15:02 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/03/17 16:08:32 by fbabin           ###   ########.fr       */
+/*   Updated: 2020/02/01 03:21:52 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			main_2(t_file *f, t_champ *champ, t_check *check)
 	while (sget_next_line(f->fd_read, &f->line) > 0)
 	{
 		f->line_nb++;
+		ft_printf("LLINE : %s\n", f->line);
 		if (f->line[0] == COMMENT_CHAR || f->line[0] == ';')
 			;
 		else if (!ft_strncmp(f->line + ft_strspn(f->line, " \t"),

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: terng <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 13:34:51 by terng             #+#    #+#             */
-/*   Updated: 2018/02/12 19:19:19 by nkamolba         ###   ########.fr       */
+/*   Updated: 2020/02/01 02:47:54 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_op	*get_op(char *instruction)
 	int		i;
 
 	i = 0;
+	ft_printf("inst : %s\n", instruction);
 	while (i < 16)
 	{
 		if (ft_strcmp(instruction, g_op_tab[i].instruction) == 0)

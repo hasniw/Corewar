@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_instruction.c                                :+:      :+:    :+:   */
+/*   check_instruction_line.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkamolba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 18:33:17 by nkamolba          #+#    #+#             */
-/*   Updated: 2018/03/16 16:37:15 by fbabin           ###   ########.fr       */
+/*   Updated: 2020/02/01 03:19:55 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int				check_instruction_line(t_champ *champ, char *line, int line_nb)
 	t_op	*op;
 	t_inst	*inst;
 
+	ft_printf("Line : %s\n", line);
 	remove_comment(line);
 	if (!(str = ft_strtrim(line)))
 		return (1);
@@ -110,5 +111,6 @@ int				check_instruction_line(t_champ *champ, char *line, int line_nb)
 	champ->accu_len += inst->len;
 	ft_lstpushback(&champ->inst, inst, sizeof(t_inst));
 	ft_strdel(&str);
+	exit (1);
 	return (1);
 }
