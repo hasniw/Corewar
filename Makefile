@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
+#    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 01:37:54 by wahasni           #+#    #+#              #
-#    Updated: 2020/02/01 02:25:16 by wahasni          ###   ########.fr        #
+#    Updated: 2020/02/10 17:14:59 by hasni            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ LDLIBS		= -lft
 SRC_NAME 	=	check_param.c\
 				check_parsing.c\
 				check_type.c\
+				disp_hexlen.c\
 				ft_error.c\
 				ft_free.c\
 				ft_init.c\
@@ -41,6 +42,7 @@ SRC_NAME 	=	check_param.c\
 				get_op.c\
 				get_param.c\
 				main.c\
+				output.c\
 				parse_comment.c\
 				parse_instruction.c\
 				parse_name.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:16:16 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/10 18:42:37 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct		s_asm
 */
 
 int					ft_error(char *str, int ret);
+char				*ft_error_str(char *str, char *ret);
 
 /*
 ** INIT
@@ -116,5 +117,12 @@ void				free_tab(void **tab);
 
 void				ft_list_push_back_inst(t_inst **begin_list, t_inst *inst);
 void				ft_list_push_back_label(t_label **begin_list, char *name, int addr);
+
+/*
+** OUTPUT
+*/
+
+t_bool				output(t_asm *asmb);
+void				disp_hexlen(int fd, size_t size, int len);
 
 #endif
