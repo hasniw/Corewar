@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 03:31:04 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/11 18:13:48 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,17 @@ t_bool			parse_instruction(t_asm *asmb)
 	t_op	*op;
 	t_inst	*inst;
 
-	// ft_printf("{green}Line : %s\n{reset}\n", asmb->line);
 	remove_comment(asmb->line);
-	// ft_printf("{white}11111{reset}\n");
 	if (!(str = ft_strtrim(asmb->line)))
 		return (1);
-	// ft_printf("{white}222222{reset}\n");
 	i = check_label_infront(asmb, str);
-	// ft_printf("{white}333333{reset}\n");
 	if (!str[i])
 	    return (free_str_value(str, 1));
-	// ft_printf("{white}444444{reset}\n");
 	i = skip_space(str, i);
-	// ft_printf("{white}555555{reset}\n");
 	if (!(op = check_inst(str + i)))
 	    return (free_str_value(str, 0));
-	// ft_printf("{white}666666{reset}\n");
 	if (!(inst = create_inst(asmb, op)))
 	    return (free_str_value(str, 0));
-	// ft_printf("{white}777777{reset}\n");
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
 	if (check_param(str + i, op, inst))

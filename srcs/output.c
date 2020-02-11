@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/11 03:04:02 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/11 15:04:45 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_bool	output(t_asm *asmb)
 	t_inst	*inst;
 	t_label	*labels;
 
-	if ((asmb->fd = open(asmb->file_name, 0)) == -1)
+	if ((asmb->fd = open(asmb->file_name, O_WRONLY | O_CREAT, 0755)) == -1)
 		return (ft_error("open file failed", 1)); // Free all
 	disp_hexlen(asmb->fd, COREWAR_EXEC_MAGIC, 4);
 	write(asmb->fd, asmb->prog_name, PROG_NAME_LENGTH);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 03:40:50 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 03:29:26 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/11 18:30:54 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ t_bool  parse(t_asm *asmb)
 		{
             if (parse_comment(asmb))
         	    return (free_asm(asmb, 1));
-        }
+		}
         else if (!parse_instruction(asmb))
         	return (free_asm(asmb, 1));
-        ft_strdel(&asmb->line);
+		ft_strdel(&asmb->line);
     }
     if (check_parsing(asmb))
         return (free_asm(asmb, 1));
