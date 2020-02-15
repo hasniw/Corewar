@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/11 18:13:48 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/15 20:36:30 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 static void		remove_comment(char *str)
 {
 	int		i;
+	int		j;
+	int		index;
 
 	i = ft_strchrindex(str, COMMENT_CHAR);
-	if (i >= 0)
-		while (str[i])
-			str[i++] = 0;
+	j = ft_strchrindex(str, ALT_COMMENT_CHAR);
+	if (i > j)
+		index = j;
+	else
+		index = i;
+	if (index >= 0)
+		while (str[index])
+			str[index] = 0;
 }
 
 static t_inst	*create_inst(t_asm *asmb, t_op *op)
@@ -44,7 +51,7 @@ static t_op		*check_inst(char *str)
 
 	inst = NULL;
 	inst_len = 0;
-	while (str[inst_len] && !ft_isspace(str[inst_len]))
+	while (str[inst_len] && !ft_isspace(str[inst_len]) && str[inst_len] != DIRECT_CHAR)
 		inst_len++;
 	if (!(inst = ft_strsub(str, 0, inst_len)))
 		return (NULL);
@@ -60,7 +67,7 @@ static int		check_label_infront(t_asm *asmb, char *str)
 	int		j;
 
 	i = 0;
-	while (str[i] && !ft_isspace(str[i]))
+	while (str[i] && !ft_isspace(str[i]) && str[i] != DIRECT_CHAR)
 	{
 		if (str[i] == LABEL_CHAR)
 		{
@@ -89,7 +96,7 @@ t_bool			parse_instruction(t_asm *asmb)
 	i = check_label_infront(asmb, str);
 	if (!str[i])
 	    return (free_str_value(str, 1));
-	i = skip_space(str, i);
+	i = skip_space(str, i);	
 	if (!(op = check_inst(str + i)))
 	    return (free_str_value(str, 0));
 	if (!(inst = create_inst(asmb, op)))

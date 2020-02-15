@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/11 15:04:45 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/15 14:57:32 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ t_bool	output(t_asm *asmb)
 	t_label	*labels;
 
 	if ((asmb->fd = open(asmb->file_name, O_WRONLY | O_CREAT, 0755)) == -1)
-		return (ft_error("open file failed", 1)); // Free all
+		return (ft_error("open file failed", 1));
+	if (asmb->accu_len > 682)
+		return (ft_error("exec code size too big", 1));
 	disp_hexlen(asmb->fd, COREWAR_EXEC_MAGIC, 4);
 	write(asmb->fd, asmb->prog_name, PROG_NAME_LENGTH);
 	disp_hexlen(asmb->fd, asmb->accu_len, 8);
@@ -108,12 +110,12 @@ t_bool	output(t_asm *asmb)
 		if (write_inst(asmb->fd, inst, labels))
 			return (1);
 		inst = inst->next;
-		if (!labels->next)
+		if (!labels || !labels->next)
 			break ;
 		labels = labels->next;
 	}
 	ft_printf("Writing output program to %s\n", asmb->file_name);
 	if ((close(asmb->fd)) == -1)
-		return (ft_error("close file failed", 1)); // Free_all
+		return (ft_error("close file failed", 1));
 	return (0);
 }
