@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 20:36:30 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 05:40:03 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static t_op		*check_inst(char *str)
 	inst_len = 0;
 	while (str[inst_len] && !ft_isspace(str[inst_len]) && str[inst_len] != DIRECT_CHAR)
 		inst_len++;
-	if (!(inst = ft_strsub(str, 0, inst_len)))
+	if (!(inst = ft_strsub(str, 0, inst_len))) // failed in check instruction
 		return (NULL);
-	if (!(op = get_op(inst)))
+	if (!(op = get_op(inst))) // instruction not found
 		return (NULL);
 	ft_strdel(&inst);
 	return (op);

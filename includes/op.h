@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:24:28 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 19:15:04 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/18 16:03:22 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ typedef char	t_arg_type;
 **
 */
 
-# define PROG_NAME_LENGTH		(128)
-# define COMMENT_LENGTH			(2048)
-# define COREWAR_EXEC_MAGIC		0xea83f3
+# define PROG_NAME_LENGTH 128
+# define COMMENT_LENGTH 2048
+# define COREWAR_EXEC_MAGIC 0xea83f3
 
 typedef struct		header_s
 {

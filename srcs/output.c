@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 14:57:32 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 05:46:40 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,13 @@ t_bool	output(t_asm *asmb)
 	if (asmb->accu_len > 682)
 		return (ft_error("exec code size too big", 1));
 	disp_hexlen(asmb->fd, COREWAR_EXEC_MAGIC, 4);
+	asmb->prog_name[ft_strlen(asmb->prog_name) - 1] = 0;
+	asmb->prog_comment[ft_strlen(asmb->prog_comment) - 1] = 0;
+	if (asmb->prog_name[ft_strlen(asmb->prog_name)] == '"')
+		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
+	if (asmb->prog_comment[ft_strlen(asmb->prog_comment)] == '"')
+		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
+	// ft_printf("PROG_NAME : %s | PROG_COMMENT : %s\n", asmb->prog_name, asmb->prog_comment);
 	write(asmb->fd, asmb->prog_name, PROG_NAME_LENGTH);
 	disp_hexlen(asmb->fd, asmb->accu_len, 8);
 	write(asmb->fd, asmb->prog_comment, COMMENT_LENGTH);
@@ -110,9 +117,6 @@ t_bool	output(t_asm *asmb)
 		if (write_inst(asmb->fd, inst, labels))
 			return (1);
 		inst = inst->next;
-		if (!labels || !labels->next)
-			break ;
-		labels = labels->next;
 	}
 	ft_printf("Writing output program to %s\n", asmb->file_name);
 	if ((close(asmb->fd)) == -1)

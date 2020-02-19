@@ -6,7 +6,7 @@
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 14:58:56 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/17 01:20:39 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define HAVE_NAME 1
 # define HAVE_COMMENT 2
+# define QUOTE_NAME 1
+# define QUOTE_COMMENT 2
 # define t_bool int // => Voir comment opti 
 
 typedef struct		s_op
@@ -61,6 +63,7 @@ typedef struct		s_asm
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			prog_comment[COMMENT_LENGTH + 1];
 	char			check; // Have prog name - comment
+	char			have_quote;
 	int				accu_len; // Len of exec code
 	t_inst			*inst;
 	t_label			*labels;

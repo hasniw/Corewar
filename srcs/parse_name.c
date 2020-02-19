@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:17:05 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/19 00:21:43 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@ static t_bool	handle_name(t_asm *asmb, char **line)
 {
 	char	*tmp;
 	int		ret;
-	int		len;
 
 	ret = 1;
 	tmp = *line;
-	len = ft_strchrindex(tmp, '"');
-	if (len > PROG_NAME_LENGTH)
-		return (ft_error("champion name too long", 1));
-	while (ret > 0 && !tmp[ft_strchrindex(tmp, '"')])
+	while (ret > 0)
 	{
 		ft_strlcat(asmb->prog_name, tmp, PROG_NAME_LENGTH);
+		ft_strcat(asmb->prog_name, "\n");
+		if (ft_strchr(tmp, '"'))
+        {
+			asmb->prog_name[ft_strlen(asmb->prog_name) - 1] = 0;
+			asmb->have_quote |= QUOTE_NAME;
+            break ;
+		}
 		ft_strdel(&asmb->line);
 		ret = get_next_line(asmb->fd, &asmb->line);
 		tmp = asmb->line;
-		len += ft_strchrindex(tmp, '"') + 1;
-		if (len > PROG_NAME_LENGTH)
+		if (ft_strlen(asmb->prog_name) - 1 > PROG_NAME_LENGTH)
 			return (ft_error("champion name too long", 1));
 	}
 	*line = tmp;
@@ -56,7 +58,7 @@ t_bool			parse_name(t_asm *asmb)
 	if (handle_name(asmb, &line))
 		return (1);
 	n_len = ft_strchrindex(line, '"');
-	if (!line[n_len] || line[n_len + 1 + ft_strspn(line + n_len + 1, " ")])
+	if (!(asmb->have_quote & QUOTE_NAME))
 		return (ft_error("could not find ending '\"' at the end of the name", 1));
 	if (n_len > PROG_NAME_LENGTH)
 		return (ft_error("champion name too long", 1));
