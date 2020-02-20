@@ -3,22 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 05:46:40 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/20 03:12:12 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 #include <fcntl.h>
+#include <string.h>
 
 static void		write_number(int fd, t_inst *inst, int i)
 {
 	if (inst->param_arr[i][0] == '%')
-		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][1]), inst->direct_len);
+	{
+		disp_hexlen(fd, atoi(&inst->param_arr[i][1]), inst->direct_len);
+		// ft_printf("ft_atoi(&inst->param_arr[i][0]) : %d | inst->direct_len : %d\n", ft_atoi(&inst->param_arr[i][0]), inst->direct_len);
+	}
 	else
-		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][0]), 2);
+	{
+		disp_hexlen(fd, atoi(&inst->param_arr[i][0]), 2);
+		// ft_printf("ft_atoi(&inst->param_arr[i][0]) : %d\n", ft_atoi(&inst->param_arr[i][0]));
+	}
 }
 
 static char		*get_label(t_inst *inst, int i)
@@ -44,7 +51,7 @@ static t_bool	write_label(int fd, t_inst *inst, t_label *labels, int i)
 	if (!(label = get_label(inst, i)))
 		return (1);
 	addr = -1;
-	while (label)
+	while (labels)
 	{
 		if (!labels)
 			return (0);
@@ -58,7 +65,10 @@ static t_bool	write_label(int fd, t_inst *inst, t_label *labels, int i)
 	}
 	direct_len = inst->param_arr[i][0] == '%' ? inst->direct_len : 2;
 	if (addr != -1)
+	{
 		disp_hexlen(fd, addr - inst->addr, direct_len);
+		// ft_printf("addr - inst->addr : %d | direct_len : %d\n", addr - inst->addr, direct_len);
+	}
 	else
 		ft_error("can't find label", 1);
 	ft_strdel(&label);
@@ -70,13 +80,20 @@ static t_bool	write_inst(int fd, t_inst *inst, t_label *labels)
 	int			i;
 
 	disp_hexlen(fd, inst->opcode, 1);
+	// ft_printf("opcode : %d\n", inst->opcode);
 	if (inst->ocp)
+	{
 		disp_hexlen(fd, inst->param_byte, 1);
+		// ft_printf("param : %d\n", inst->param_byte);
+	}
 	i = 0;
 	while (i < inst->param_num)
 	{
 		if (inst->param_arr[i][0] == 'r')
-			disp_hexlen(fd, ft_atoi(&inst->param_arr[i][1]), 1);
+		{
+			disp_hexlen(fd, atoi(&inst->param_arr[i][1]), 1);
+			// ft_printf("ft_atoi(&inst->param_arr[i][1]) : %d\n", ft_atoi(&inst->param_arr[i][1]));
+		}
 		else if (!ft_strchr(inst->param_arr[i], ':'))
 			write_number(fd, inst, i);
 		else
@@ -110,6 +127,7 @@ t_bool	output(t_asm *asmb)
 	disp_hexlen(asmb->fd, asmb->accu_len, 8);
 	write(asmb->fd, asmb->prog_comment, COMMENT_LENGTH);
 	write(asmb->fd, "\0\0\0\0", 4);
+
 	inst = asmb->inst;
 	labels = asmb->labels;
 	while (inst)
