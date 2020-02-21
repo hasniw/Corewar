@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/11 18:33:21 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/21 04:14:41 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void	free_tab(void **tab)
+int		free_just_inst(t_inst *inst, int ret)
+{
+	free(inst);
+	return (ret);
+}
+
+int		free_tab(char **tab, int ret)
 {
 	int i;
 
@@ -20,6 +26,7 @@ void	free_tab(void **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+	return (ret);
 }
 
 void	free_inst(t_inst *inst)
@@ -28,9 +35,9 @@ void	free_inst(t_inst *inst)
 
 	while (inst)
 	{
-		free_tab((void **)inst->param_arr);
+		free_tab(inst->param_arr, 0);
 		tmp = inst->next;
-		// 	ft_memdel((void **)inst);
+		free(inst);
 		inst = tmp;
 	}
 }
@@ -43,7 +50,7 @@ void	free_labels(t_label *labels)
 	{
 		ft_strdel(&labels->name);
 		tmp = labels->next;
-		ft_memdel((void **)labels);
+		free(labels);
 		labels = tmp;
 	}
 }

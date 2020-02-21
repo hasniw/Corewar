@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/17 01:20:39 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/21 03:06:00 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ int					free_str_value(char *str, int value);
 int					free_asm(t_asm *asmb, int ret);
 void				free_labels(t_label *labels);
 void				free_inst(t_inst *inst);
-void				free_tab(void **tab);
+int					free_tab(char **tab, int ret);
+int					free_just_inst(t_inst *inst, int ret);
 
 
 /*

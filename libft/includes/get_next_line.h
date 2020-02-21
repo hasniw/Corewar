@@ -6,24 +6,34 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 16:54:15 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/12 21:08:57 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/21 05:15:43 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft.h"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-# define GNL_BUFF_SIZE 6
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
 
-typedef struct			s_fd
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+
+typedef struct	s_stock
 {
-	char				*buff;
-	int					fd;
-	struct s_fd			*next;
-}						t_fd;
+	int		fd;
+	char	s[BUFFER_SIZE];
+	int		len;
+	int		old_len;
+}				t_stock;
 
-int						get_next_line(const int fd, char **line);
+int				get_next_line(int fd, char **line);
 
 #endif

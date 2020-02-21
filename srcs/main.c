@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/20 03:10:36 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/21 04:21:04 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ int     main(int ac, char **av)
 	if (handle_file(&asmb, ac, av[1]))
 		return (ft_error("Wrong input", -1));
 	if (parse(&asmb))
-		return (1);
+		return (free_asm(&asmb, -1));
 	// ft_printf("PROG_NAME : %s | PROG_COMMENT : %s\n", asmb.prog_name, asmb.prog_comment);
 	// ft_printf("{green}File to create : %s{reset}\n", asmb.file_name);
 	if ((close(asmb.fd)) == -1)
-		return (ft_error("close file failed", -1));
+		return (free_asm(&asmb, ft_error("close file failed", -1)));
 	// ft_printf("{yellow}Just before output{reset}\n");
 	// printparser(&asmb);
+	// if (asmb.line)
+	// 	free(asmb.line);
 	if (output(&asmb))
-		return (1);
-	return (0);
+		return (free_asm(&asmb, -1));
+	return (free_asm(&asmb, -1));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 00:21:43 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/21 04:07:24 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ t_bool			parse_name(t_asm *asmb)
 		return (ft_error("champion name too long", 1));
 	ft_strlcat(asmb->prog_name, line, n_len + 1);
 	asmb->check |= HAVE_NAME;
+	// exit (1);
 	return (0);
 }

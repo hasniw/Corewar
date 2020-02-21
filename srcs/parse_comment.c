@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_comment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 00:22:46 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/21 04:11:54 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ t_bool			parse_comment(t_asm *asmb)
         return (ft_error("comment too long", 1));
     ft_strlcat(asmb->prog_comment, line, n_len + 1);
     asmb->check |= HAVE_COMMENT;
+    // exit (1);
     return (0);
 }

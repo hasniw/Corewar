@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 05:40:03 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/21 04:12:13 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ t_bool			parse_instruction(t_asm *asmb)
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
 	if (check_param(str + i, op, inst))
-	    return (free_str_value(str, 0));
+	    return (free_str_value(str, free_just_inst(inst, 0)));
 	asmb->accu_len += inst->len;
 	ft_list_push_back_inst(&asmb->inst, inst);
-	return (free_str_value(str, 1));
+	// exit (1);
+	return (free_str_value(str, free_just_inst(inst, 1)));
 }

@@ -7,7 +7,7 @@ test()
 	echo "NEW:"
 	./asm champs/${1}.s
 	hexdump -C champs/${1}.cor > myret
-	./asm_y champs/${1}.s
+	./asm_test champs/${1}.s
 	hexdump -C champs/${1}.cor > zazret
 	echo "Champion: ${1} | diff with zaz is:" >> script.out;
 	diff myret zazret >> script.out;
