@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 00:21:02 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:49:02 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	free_labels(t_label *labels)
 
 int		free_asm(t_asm *asmb, int ret)
 {
+	if (asmb->line)
+		ft_strdel(&asmb->line);
 	ft_strdel(&asmb->file_name);
 	if (asmb->labels)
 		free_labels(asmb->labels);
