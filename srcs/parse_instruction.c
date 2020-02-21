@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/21 04:12:13 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:25:20 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,5 @@ t_bool			parse_instruction(t_asm *asmb)
 	    return (free_str_value(str, free_just_inst(inst, 0)));
 	asmb->accu_len += inst->len;
 	ft_list_push_back_inst(&asmb->inst, inst);
-	// exit (1);
 	return (free_str_value(str, free_just_inst(inst, 1)));
 }
