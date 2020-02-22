@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hasni <hasni@student.42.fr>                +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 01:37:54 by wahasni           #+#    #+#              #
-#    Updated: 2020/02/10 17:14:59 by hasni            ###   ########.fr        #
+#    Updated: 2020/02/22 03:05:55 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_NAME 	=	check_param.c\
 				disp_hexlen.c\
 				ft_error.c\
 				ft_free.c\
+				ft_free2.c\
 				ft_init.c\
 				ft_list.c\
 				ft_skip.c\
@@ -47,6 +48,7 @@ SRC_NAME 	=	check_param.c\
 				parse_instruction.c\
 				parse_name.c\
 				parser.c\
+				handle_end.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

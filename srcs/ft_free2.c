@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disp_hexlen.c                                      :+:      :+:    :+:   */
+/*   ft_free2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 16:15:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:37:56 by wahasni          ###   ########.fr       */
+/*   Created: 2020/02/22 03:04:39 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/22 03:06:28 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void	disp_hexlen(int fd, size_t size, int len)
+int		free_str_value(char *str, int value)
 {
-	unsigned char	*tmp;
-	int				i;
+	ft_strdel(&str);
+	return (value);
+}
 
-	i = len;
-	if (!(tmp = (unsigned char*)ft_memalloc(i * sizeof(unsigned char))))
-		return ;
-	while (size && i > 0)
-	{
-		tmp[--i] = size % 256;
-		size /= 256;
-	}
-	write(fd, tmp, len);
-	ft_memdel((void**)&tmp);
+int		free_tab(char **tab, int ret)
+{
+	int i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+	return (ret);
 }

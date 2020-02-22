@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/21 03:06:00 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 03:19:34 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define HAVE_COMMENT 2
 # define QUOTE_NAME 1
 # define QUOTE_COMMENT 2
-# define t_bool int // => Voir comment opti 
 
 typedef struct		s_op
 {
@@ -57,14 +56,14 @@ typedef struct		s_label
 
 typedef struct		s_asm
 {
-    int				fd;
+	int				fd;
 	char			*line;
-    char			*file_name;
+	char			*file_name;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			prog_comment[COMMENT_LENGTH + 1];
-	char			check; // Have prog name - comment
+	char			check;
 	char			have_quote;
-	int				accu_len; // Len of exec code
+	int				accu_len;
 	t_inst			*inst;
 	t_label			*labels;
 }					t_asm;
@@ -86,14 +85,15 @@ void				init_asm(t_asm *asmb);
 ** PARSING
 */
 
-t_bool				parse(t_asm *asmb);
-t_bool				parse_name(t_asm *asmb);
-t_bool				parse_comment(t_asm *asmb);
-t_bool				parse_instruction(t_asm *asmb);
-t_bool				check_parsing(t_asm *asmb);
-t_bool				check_param(char *str, t_op *op, t_inst *inst);
+int					parse(t_asm *asmb, int ret);
+int					parse_name(t_asm *asmb);
+int					parse_comment(t_asm *asmb);
+int					parse_instruction(t_asm *asmb);
+int					check_parsing(t_asm *asmb);
+int					check_param(char *str, t_op *op
+					, t_inst *inst, int i);
 char				get_param_type(char *str, t_inst *inst, int i);
-t_bool				check_type(char *str, int type);
+int					check_type(char *str, int type);
 t_op				*get_op(char *instruction);
 
 /*
@@ -114,19 +114,20 @@ void				free_inst(t_inst *inst);
 int					free_tab(char **tab, int ret);
 int					free_just_inst(t_inst *inst, int ret);
 
-
 /*
 ** LIST
 */
 
 void				ft_list_push_back_inst(t_inst **begin_list, t_inst *inst);
-void				ft_list_push_back_label(t_label **begin_list, char *name, int addr);
+void				ft_list_push_back_label(t_label **begin_list,
+					char *name, int addr);
 
 /*
 ** OUTPUT
 */
 
-t_bool				output(t_asm *asmb);
+int					output(t_asm *asmb);
 void				disp_hexlen(int fd, size_t size, int len);
+void				handle_end(t_asm *asmb);
 
 #endif

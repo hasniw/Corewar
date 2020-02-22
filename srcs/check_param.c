@@ -6,13 +6,13 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:32:56 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 00:46:33 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 03:17:00 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-static t_bool	check_param_num(char *str, char **arr, int param_num)
+static int		check_param_num(char *str, char **arr, int param_num)
 {
 	int		i;
 	int		sep_num;
@@ -43,28 +43,26 @@ static void		get_inst_len(t_op *op, t_inst *inst, char type)
 		inst->len += 2;
 }
 
-t_bool			check_param(char *str, t_op *op, t_inst *inst)
+int				check_param(char *str, t_op *op, t_inst *inst, int i)
 {
 	char	**arr;
 	char	*tmp;
 	char	type;
-	int		i;
 
 	if (!(arr = ft_strsplit(str, SEPARATOR_CHAR)))
-		return (ft_error("ft_strsplit failed in check_parameters", 1));
+		return (ft_error("ft_strsplit failed", 1));
 	if (check_param_num(str, arr, op->param_num))
 		return (free_tab(arr, 1));
-	i = -1;
 	while (++i < op->param_num)
 	{
 		if (!(tmp = ft_strtrim(arr[i])))
-			return (ft_error("ft_strtrim failed in check_parameters", free_tab(arr, 1)));
+			return (ft_error("ft_strtrim failed", free_tab(arr, 1)));
 		ft_strdel(&arr[i]);
 		arr[i] = tmp;
 		if (!(type = get_param_type(arr[i], inst, i)))
-			return (ft_error("ft_strtrim failed in check_parameters", free_tab(arr, 1)));
+			return (ft_error("ft_strtrim failed", free_tab(arr, 1)));
 		if (!(type & op->param_type[i]))
-			return (ft_error("input arguments have wrong type", free_tab(arr, 1)));
+			return (ft_error("arguments have wrong type", free_tab(arr, 1)));
 		if (check_type(arr[i], type))
 			return (free_tab(arr, 1));
 		get_inst_len(op, inst, type);

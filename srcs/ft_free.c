@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 00:49:02 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 03:05:27 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 int		free_just_inst(t_inst *inst, int ret)
 {
 	free(inst);
-	return (ret);
-}
-
-int		free_tab(char **tab, int ret)
-{
-	int i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
 	return (ret);
 }
 
@@ -65,10 +54,4 @@ int		free_asm(t_asm *asmb, int ret)
 	if (asmb->inst)
 		free_inst(asmb->inst);
 	return (ret);
-}
-
-int		free_str_value(char *str, int value)
-{
-	ft_strdel(&str);
-	return (value);
 }

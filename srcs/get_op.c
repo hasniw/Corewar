@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_op.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:28 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 05:44:57 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/22 02:48:27 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-
-// Cree un file op.c et ock dedant op_tab => Plus propre
 
 t_op	g_op_tab[17] =
 {

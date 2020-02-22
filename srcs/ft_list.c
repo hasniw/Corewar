@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:48:55 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/21 04:01:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 02:49:02 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static t_inst	*ft_create_elem_inst(t_inst *inst)
 	return (list);
 }
 
-void			ft_list_push_back_label(t_label **begin_list, char *name, int addr)
+void			ft_list_push_back_label(t_label **begin_list,
+	char *name, int addr)
 {
 	t_label	*list;
 

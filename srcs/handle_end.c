@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disp_hexlen.c                                      :+:      :+:    :+:   */
+/*   handle_end.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 16:15:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:37:56 by wahasni          ###   ########.fr       */
+/*   Created: 2020/02/22 01:47:13 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/22 01:48:59 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void	disp_hexlen(int fd, size_t size, int len)
+void	handle_end(t_asm *asmb)
 {
-	unsigned char	*tmp;
-	int				i;
-
-	i = len;
-	if (!(tmp = (unsigned char*)ft_memalloc(i * sizeof(unsigned char))))
-		return ;
-	while (size && i > 0)
-	{
-		tmp[--i] = size % 256;
-		size /= 256;
-	}
-	write(fd, tmp, len);
-	ft_memdel((void**)&tmp);
+	asmb->prog_name[ft_strlen(asmb->prog_name) - 1] = 0;
+	asmb->prog_comment[ft_strlen(asmb->prog_comment) - 1] = 0;
+	if (asmb->prog_name[ft_strlen(asmb->prog_name)] == '"')
+		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
+	if (asmb->prog_comment[ft_strlen(asmb->prog_comment)] == '"')
+		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
 }
