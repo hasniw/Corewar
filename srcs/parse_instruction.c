@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 00:25:20 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/22 01:08:06 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ static t_op		*check_inst(char *str)
 	if (!(inst = ft_strsub(str, 0, inst_len))) // failed in check instruction
 		return (NULL);
 	if (!(op = get_op(inst))) // instruction not found
+	{
+		ft_strdel(&inst);
 		return (NULL);
+	}
 	ft_strdel(&inst);
 	return (op);
 }
